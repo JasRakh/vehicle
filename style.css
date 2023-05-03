@@ -1,0 +1,128 @@
+/* 1554px */
+*, 
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+body{
+    background-color:#0F0F19;
+}
+.container{
+    max-width: 1554px;
+    width: 100%;
+    margin: 0 auto;
+}  
+/* ============= RIGHT SIDE ================ */
+.vehicles{
+    margin: 95px 0;
+}
+.vehicles__section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+.vehicles__img{
+    width: 100%;
+}
+.vehicles__info{
+    position: relative;
+}
+.vehicles__info-header{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+}
+.vehicles__img-title{
+    font-size: 36px;
+    font-family: Roboto;
+    font-weight: 400;
+    line-height: 39.6px;
+    color: #fff;
+    text-transform: uppercase;
+}
+.vehicles__img-passengers{
+    font-size: 24px;
+    font-family: Montserrat;
+    font-weight: 700;
+    line-height: 29.26px;
+    color: #fff;
+    letter-spacing: 5%;
+}
+.vehicles__img-loupe{
+    width: 140px;
+    height: 140px;
+    background-color: #2C2C46;
+    border: 0;
+}
+.vehicles__info-footer{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+}
+.vehicles__img-text{
+    font-size: 16px;
+    font-family: Montserrat;
+    font-weight: 400;
+    color: #fff;
+    line-height: 22.4px;
+    text-align: left;
+    width: 384px;
+}
+.vehicles__img-btn{
+    padding: 25px 90px;
+    font-size: 20px;
+    font-family: Montserrat;
+    font-weight: 700;
+    color: #fff;
+    background-color: #232AFD;
+    border: 0;
+    cursor: pointer;
+}
+
+/* ============== LEFT SIDE ===============  */
+.vehicles__slider{
+    width: 30%;
+}
+.vehicles__slider-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.vehicles__slider-title{
+    margin-right: 500px;
+}
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+  .swiper-wrapper{
+    width: 600px !important;
+  }
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    width: 287px !important;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .swiper {
+    width: 100%;
+    height: 408px;
+    margin: 20px auto;
+  }
+
+/* ============== CONTROLLERS =============== */

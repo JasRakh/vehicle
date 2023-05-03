@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+/>
+</head>
+<body>
+    <main>
+        <section class="vehicles">
+            <div class="container">
+                <div class="vehicles__section">
+                    <div class="vehicles__info">
+                        <img class="vehicles__img" src="assets/big-vehicle.jpg" alt="">
+                        <div class="vehicles__info-header">
+                            <div class="vehicles__info-header-title">
+                                <h3 class="vehicles__img-title">Sprinter executive</h3>
+                                <p class="vehicles__img-passengers">13 passengers</p>
+                            </div>
+                            <button class="vehicles__img-loupe"></button>
+                        </div>
+                        <div class="vehicles__info-footer">
+                            <p class="vehicles__img-text">Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer</p>
+                            <button class="vehicles__img-btn">Book</button>
+                        </div>
+                    </div>
+                    <div class="vehicles__slider">
+                        <!-- <div class="vehicles__slider-top">
+                            <h2 class="vehicles__slider-title">VEHICLES</h2>
+                            <div class="controllers">
+                                <button class="prev"><</button>
+                                <button class="next">></button>
+                            </div>
+                        </div> -->
+
+                        <div #swiperRef="" class="swiper mySwiper">
+                            <div class="swiper-wrapper">
+                              <div class="swiper-slide">Slide 1</div>
+                              <div class="swiper-slide">Slide 2</div>
+                              <div class="swiper-slide">Slide 3</div>
+                              <div class="swiper-slide">Slide 4</div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
