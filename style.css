@@ -39,7 +39,7 @@ body{
 }
 .vehicles__img-title{
     font-size: 36px;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     font-weight: 400;
     line-height: 39.6px;
     color: #fff;
@@ -47,7 +47,7 @@ body{
 }
 .vehicles__img-passengers{
     font-size: 24px;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-weight: 700;
     line-height: 29.26px;
     color: #fff;
@@ -67,20 +67,21 @@ body{
     bottom: 30px;
     left: 30px;
     right: 30px;
+    gap: 40px;
 }
 .vehicles__img-text{
     font-size: 16px;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-weight: 400;
     color: #fff;
     line-height: 22.4px;
     text-align: left;
-    width: 384px;
+    max-width: 384px;
 }
 .vehicles__img-btn{
     padding: 25px 90px;
     font-size: 20px;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-weight: 700;
     color: #fff;
     background-color: #232AFD;
@@ -96,7 +97,7 @@ body{
 }
 .vehicles__slider-title{
     font-size: 60px;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     font-weight: 400;
     color: #fff;
     opacity: .3;
@@ -106,61 +107,63 @@ body{
     align-items: center;
     margin-bottom: 150px;
 }
-.swiper {
-    width: 100%;
-    height: 100%;
-  }
-  .swiper-slide {
-    font-size: 18px;
-    width: 287px !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .swiper {
-    height: 408px;
-  }
-  .slide__img{
-    background-color: #fff;
-    padding: 28px 0;
-  }
-  .notPNG{
-    padding: 10px 0;
+
+.vehicles__swiper {
+  width: 100%;
+  height: 408px;
 }
-  .slide__info{
-    background-color: #2C2C46;
-    padding: 30px;
-  }
-  .slide__title{
-    font-size: 20px;
-    color: #fff;
-    font-family: Montserrat;
-    font-weight: 700;
-  }
-  .slide__text{
-    font-size: 18px;
-    font-family: Montserrat;
-    font-weight: 400;
-    color: #fff;
-    margin: 10px 0 44px;
-  }
-  .slide__link{
-    font-size: 16px;
-    font-family: Montserrat;
-    font-weight: 400;
-    color: #fff;
-    position: relative;
-  }
-  .slide__link::after{
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    background-color: #fff;
-    top: 140%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-  }
+.vehicles__item-img{
+  background-color: #fff;
+  padding: 28px 0;
+}
+
+.notPNG{
+  padding: 10px 0;
+}
+
+.vehicles__item {
+  font-size: 18px;
+  flex: 1 1 287px;
+}
+
+.vehicles__item-container {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.45);
+}
+
+.vehicles__item-info{
+  background-color: #2C2C46;
+  padding: 30px;
+}
+.vehicles__item-title{
+  font-size: 20px;
+  color: #fff;
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+}
+.vehicles__item-text{
+  font-size: 18px;
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  color: #fff;
+  margin: 10px 0 44px;
+}
+.vehicles__item-link{
+  font-size: 16px;
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  color: #fff;
+  position: relative;
+}
+.vehicles__item-link::after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #fff;
+  top: 140%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
 
 /* ============== CONTROLLERS =============== */
 .box{

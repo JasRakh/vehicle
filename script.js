@@ -1,6 +1,5 @@
-var swiper = new Swiper(".mySwiper", {
-  slidesPerView: 3  ,
-  centeredSlides: true,
+new Swiper(".vehicles__swiper", {
+  slidesPerView: 'auto',
   spaceBetween: 60,
   navigation: {
     nextEl: ".swiper-button-next",
