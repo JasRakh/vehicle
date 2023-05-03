@@ -194,3 +194,64 @@ body{
     justify-content: space-between;
     margin-left: 150px;
 }
+
+/* ============Number of rows============== */
+.vehicles__seats{
+    margin-top:35px;
+}
+.vehicles__seats-title{
+    font-size: 20px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 28px;
+}
+.vehicles__seats-rows{
+    display: inline-flex;
+    flex-direction: column;
+}
+.vehicles__seats-row{
+    display: flex;
+    border: 1px solid #fff;
+    margin-bottom: 15px;
+}
+.vehicles__seats-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 72px;
+    position: relative;
+}
+.vehicles__seats-item::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 1px;
+    height: 29px;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+}
+.vehicles__seats-item:last-child:after{
+    display: none;
+}
+.vehicles__seats-number{
+    font-size: 16px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 400;
+    color: #fff;
+    position: relative;
+    padding: 12px 24px;
+    cursor: pointer;
+}
+.vehicles__seats-item:hover{
+    background-color: #fff;
+    transform: scale(1.111);
+}
+.vehicles__seats-item:hover .vehicles__seats-number{
+    color: #232AFD;
+    font-weight: 700;
+}
+.vehicles__seats-item:hover::after{
+    display: none;
+}
