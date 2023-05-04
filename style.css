@@ -8,6 +8,16 @@
     text-decoration: none;
     box-sizing: border-box;
 }
+@font-face {
+    font-weight: 400;
+    font-family: "STARLYNX";
+    src: url("fonts/STARLYNX.ttf");
+}
+@font-face {
+    font-weight: 400;
+    font-family: "STARLYNX";
+    src: url("fonts/STARLYNX.otf");
+}
 body{
     background-color:#0F0F19;
 }
@@ -39,7 +49,7 @@ body{
 }
 .vehicles__img-title{
     font-size: 36px;
-    font-family: Roboto, sans-serif;
+    font-family: "STARLYNX";
     font-weight: 400;
     line-height: 39.6px;
     color: #fff;
@@ -53,12 +63,7 @@ body{
     color: #fff;
     letter-spacing: 5%;
 }
-.vehicles__img-loupe{
-    width: 140px;
-    height: 140px;
-    background-color: #2C2C46;
-    border: 0;
-}
+
 .vehicles__info-footer{
     position: absolute;
     display: flex;
@@ -88,6 +93,28 @@ body{
     border: 0;
     cursor: pointer;
 }
+.vehicles__img-loupe{
+    width: 140px;
+    height: 140px;
+    background-color: #2C2C46;
+    border: 0;
+    outline: none;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0px 0px 11px 0px rgb(255, 255, 255 , .5);
+}
+.loupe__img{
+    width: 100%;
+    height: 100%;
+}
+.glass{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    color: #fff;
+}
 
 /* ============== LEFT SIDE ===============  */
 .vehicles__slider{
@@ -97,7 +124,7 @@ body{
 }
 .vehicles__slider-title{
     font-size: 60px;
-    font-family: Roboto, sans-serif;
+    font-family: "STARLYNX";
     font-weight: 400;
     color: #fff;
     opacity: .3;
