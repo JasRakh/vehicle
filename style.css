@@ -140,6 +140,7 @@ body{
 .vehicles__item {
   font-size: 18px;
   flex: 0 0 287px;
+  cursor: pointer;
 }
 
 .vehicles__item-hidden {
