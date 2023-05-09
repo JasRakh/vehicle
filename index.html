@@ -1,111 +1,883 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      *,
+      *::after,
+      *::before {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-decoration: none;
+        box-sizing: border-box;
+      }
+      @font-face {
+        font-weight: 400;
+        font-family: "STARLYNX";
+        src: url("fonts/STARLYNX.ttf");
+      }
+      @font-face {
+        font-weight: 400;
+        font-family: "STARLYNX";
+        src: url("fonts/STARLYNX.otf");
+      }
+      body {
+        background-color: #0f0f19;
+      }
+      .container {
+        margin-left: 200px;
+        margin-right: 0;
+      }
+      /* ============= RIGHT SIDE ================ */
+      .vehicles {
+        margin: 95px 0;
+      }
+      .vehicles__section {
+        display: flex;
+        gap: 9%;
+      }
+      .vehicles__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .vehicles__info {
+        position: relative;
+      }
+      .vehicles__info-car {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+      }
+      .vehicles__info-car {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        display: none;
+      }
+      .vehicles__info-hidden.active .vehicles__info-car,
+      .vehicles__info-hidden.active .vehicles__info-car--exit {
+        display: flex;
+      }
+      .vehicles__info-car--exit {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+        padding: 24px 47px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        color: #232afd;
+        border: 0;
+        outline: 0;
+        align-items: center;
+        cursor: pointer;
+        display: none;
+      }
+      .back {
+        margin-left: 16px;
+      }
+
+      .vehicles__info-header {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        top: 30px;
+        left: 30px;
+        right: 30px;
+      }
+      .vehicles__img-title {
+        font-size: 36px;
+        font-family: "STARLYNX";
+        font-weight: 400;
+        color: #fff;
+        text-transform: uppercase;
+      }
+      .vehicles__img-passengers {
+        font-size: 24px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 5%;
+      }
+
+      .vehicles__info-footer {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        bottom: 30px;
+        left: 30px;
+        right: 30px;
+        gap: 40px;
+      }
+      .vehicles__img-text {
+        font-size: 16px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 400;
+        color: #fff;
+        line-height: 22.4px;
+        text-align: left;
+        max-width: 384px;
+      }
+      .vehicles__img-btn {
+        padding: 25px 90px;
+        font-size: 20px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 700;
+        color: #fff;
+        background-color: #232afd;
+        border: 0;
+        cursor: pointer;
+      }
+      .vehicles__img-btn--mobile {
+        display: none;
+      }
+      .vehicles__img-loupe {
+        width: 140px;
+        height: 140px;
+        background-color: #2c2c46;
+        border: 0;
+        outline: none;
+        position: relative;
+        cursor: pointer;
+        box-shadow: 0px 0px 11px 0px rgb(255, 255, 255, 0.5);
+      }
+      .loupe__img {
+        width: 100%;
+        height: 100%;
+      }
+      .loupe__search {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* ============== LEFT SIDE ===============  */
+      .vehicles__slider {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+      }
+      .vehicles__slider-title {
+        font-size: 60px;
+        font-family: "STARLYNX";
+        font-weight: 400;
+        color: #fff;
+        opacity: 0.3;
+      }
+      .vehicles__slider-top {
+        display: flex;
+        align-items: center;
+        margin-bottom: 90px;
+      }
+      .vehicles__swiper {
+        width: 100%;
+        height: 408px;
+      }
+
+      .vehicles__item {
+        font-size: 18px;
+        flex: 0 0 287px;
+        cursor: pointer;
+      }
+
+      .vehicles__item-hidden {
+        flex: 1 1 50px;
+        visibility: hidden;
+      }
+
+      .vehicles__item-container {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.45);
+      }
+
+      .vehicles__item-img {
+        height: 233px;
+        display: flex;
+        justify-content: center;
+        background-color: #fff;
+        padding: 28px 0;
+      }
+
+      .vehicles__item-img img {
+        object-fit: none;
+      }
+
+      .vehicles__item-info {
+        background-color: #2c2c46;
+        padding: 21px 30px 30px;
+      }
+      .vehicles__item-title {
+        font-size: 20px;
+        color: #fff;
+        font-family: Montserrat, sans-serif;
+        font-weight: 700;
+      }
+      .vehicles__item-text {
+        font-size: 18px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 400;
+        color: #fff;
+        margin: 10px 0 44px;
+      }
+      .vehicles__item-link {
+        font-size: 16px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 400;
+        color: #fff;
+        position: relative;
+      }
+      .vehicles__item-link::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background-color: #fff;
+        top: 140%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      /* ============== CONTROLLERS =============== */
+      .swiper-button-next,
+      .swiper-button-prev {
+        width: 47px !important;
+        height: 47px !important;
+        position: relative !important;
+        left: 0 !important;
+        right: 0 !important;
+        border: 1px solid #fff;
+      }
+      .swiper-button-next::after,
+      .swiper-button-prev::after {
+        content: "";
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 20px !important;
+        transition: 0.3s;
+      }
+      .swiper-button-next:hover,
+      .swiper-button-prev:hover {
+        background-color: #fff;
+      }
+      .swiper-button-next:hover::after,
+      .swiper-button-prev:hover::after {
+        color: #232afd;
+      }
+      .controllers {
+        display: flex;
+        gap: 32px;
+        justify-content: space-between;
+        margin-left: 150px;
+        position: relative;
+        top: 20px;
+      }
+
+      /* ============Number of rows============== */
+      .vehicles__seats {
+        margin-top: 69px;
+      }
+      .vehicles__seats-title {
+        font-size: 20px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 25px;
+      }
+      .vehicles__seats-rows {
+        display: inline-flex;
+        flex-direction: column;
+      }
+      .vehicles__seats-row {
+        display: flex;
+        border: 1px solid #fff;
+        margin-bottom: 15px;
+      }
+      .vehicles__seats-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 72px;
+        position: relative;
+      }
+      .vehicles__seats-item::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        width: 1px;
+        height: 29px;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+      }
+      .vehicles__seats-item:last-child:after {
+        display: none;
+      }
+      .vehicles__seats-number {
+        font-size: 16px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 400;
+        color: #fff;
+        position: relative;
+        padding: 12px 24px;
+        cursor: pointer;
+      }
+      .vehicles__seats-item.active {
+        background-color: #fff;
+        transform: scale(1.111);
+      }
+      .vehicles__seats-item.active .vehicles__seats-number {
+        color: #232afd;
+        font-weight: 700;
+      }
+      .vehicles__seats-item.active::after {
+        display: none;
+      }
+
+      @media screen and (max-width: 1550px) {
+        .vehicles__img-text {
+          font-size: 15px;
+        }
+        .vehicles__img-title {
+          font-size: 23px;
+        }
+        .vehicles__img-passengers {
+          font-size: 15px;
+        }
+        .vehicles__img-btn {
+          padding: 20px 60px;
+        }
+      }
+      @media screen and (max-width: 1350px) {
+        .container {
+          margin-left: 100px;
+          margin-right: 0;
+        }
+        .vehicles__info-footer {
+          display: flex;
+          flex-direction: column;
+        }
+        .vehicles__img-loupe {
+          width: 100px;
+          height: 100px;
+        }
+      }
+      @media screen and (max-width: 1200px) {
+        .container {
+          max-width: 1100px;
+          width: 100%;
+          margin: 0 auto;
+        }
+        .vehicles__slider-top {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .vehicles__section {
+          display: flex;
+          flex-direction: column-reverse;
+          align-items: center;
+        }
+        .vehicles__slider {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+        .vehicles__seats {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+      }
+      @media screen and (max-width: 800px) {
+        .container {
+          max-width: 650px;
+          width: 100%;
+          margin: 0 auto;
+        }
+        .vehicles__slider-top {
+          width: 100% !important;
+          margin-bottom: 70px;
+        }
+
+        .swiper-button-prev,
+        .swiper-button-next {
+          display: none !important;
+        }
+      }
+      @media screen and (max-width: 720px) {
+        .vehicles__item {
+          font-size: 18px;
+          margin-right: 15px !important;
+          width: 166px !important;
+        }
+        .vehicles__slider {
+          width: 100%;
+          margin-bottom: 25px !important;
+        }
+        .vehicles__slider-top {
+          position: relative;
+          margin-bottom: 40px;
+        }
+        .vehicles__slider-title {
+          font-size: 18px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        .vehicles__img-btn--mobile {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 16px;
+          width: 100%;
+          margin-top: 25px;
+        }
+        .vehicles__seats-title {
+          margin-bottom: 22px;
+        }
+        .vehicles__img-btn--desktop {
+          display: none;
+        }
+        .vehicles__info-footer {
+          bottom: 152px;
+          left: 17px;
+        }
+        .vehicles__swiper-section {
+          display: flex;
+          flex-direction: column-reverse;
+        }
+        .vehicles {
+          margin: 35px 0;
+        }
+        .vehicles__seats {
+          width: 100%;
+          text-align: center;
+          margin: 0 0 7px 0;
+        }
+        .vehicles__seats-title {
+          font-size: 14px;
+        }
+        .vehicles__seats-item {
+          width: 55px;
+        }
+        .vehicles__img-title {
+          font-size: 14px;
+          margin-bottom: 5px;
+        }
+        .vehicles__img-passengers {
+          font-size: 12px;
+        }
+        .vehicles__img-text {
+          font-size: 10px;
+          line-height: 14px;
+          position: absolute;
+        }
+        .vehicles__img {
+          width: 100%;
+          object-fit: cover;
+        }
+        .vehicles__img-loupe {
+          width: 50px;
+          height: 50px;
+        }
+        .loupe__search {
+          width: 11px;
+        }
+        .vehicles__info-header {
+          padding-top: 14px;
+          display: flex;
+          top: 0;
+          left: 14px;
+          right: 14px;
+        }
+        .vehicles__item-container {
+          width: 160px;
+        }
+        .vehicles__item {
+          flex: 1 1 160px;
+        }
+        .vehicles__item-img {
+          height: 100px;
+          padding: 0;
+        }
+        .vehicles__item-img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .vehicles__item-info {
+          padding: 17px 17px 20px 17px;
+        }
+        .vehicles__item-title {
+          font-size: 12px;
+        }
+        .vehicles__item-text {
+          font-size: 12px;
+          margin-bottom: 17px;
+        }
+        .vehicles__item-link {
+          font-size: 12px;
+        }
+        .vehicles__info {
+          margin: 0 20px;
+        }
+        .vehicles__swiper {
+          height: 220px;
+          width: 100% !important;
+          margin-left: 5px;
+        }
+        .swiper-wrapper {
+          margin-left: 20px !important;
+        }
+        .vehicles__seats-number {
+          padding: 10px 24px;
+        }
+        .vehicles__info-car--exit {
+          padding: 12px 18px;
+          font-size: 14px;
+          top: 16px;
+          right: 16px;
+        }
+      }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 </head>
 <body>
-    <main>
-        <section class="vehicles">
-            <div class="container">
-                <div class="vehicles__section">
-                    <div class="vehicles__info">
-                        <img class="vehicles__img" src="assets/cars/big/0.png" alt="">
-                        <div class="vehicles__info-header">
-                            <div class="vehicles__info-header-title">
-                                <h3 class="vehicles__img-title">Sprinter executive</h3>
-                                <p class="vehicles__img-passengers">13 passengers</p>
-                            </div>
-                            <div class="vehicles__img-loupe">
-                                <img class="loupe__img" src="assets/loupe.png" alt="">
-                                <svg class="loupe__search" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5255 2.45753C12.0722 2.45753 10.6332 2.74379 9.29059 3.29995C7.94797 3.85612 6.72803 4.6713 5.70043 5.69896C4.67282 6.72662 3.85769 7.94663 3.30155 9.28933C2.74542 10.632 2.45918 12.0711 2.45918 13.5245C2.45918 14.9778 2.74542 16.4169 3.30155 17.7596C3.85769 19.1023 4.67282 20.3223 5.70043 21.35C6.72803 22.3776 7.94797 23.1928 9.29059 23.749C10.6332 24.3051 12.0722 24.5914 13.5255 24.5914C16.4605 24.5914 19.2752 23.4254 21.3505 21.35C23.4259 19.2745 24.5918 16.4596 24.5918 13.5245C24.5918 10.5893 23.4259 7.77441 21.3505 5.69896C19.2752 3.62351 16.4605 2.45753 13.5255 2.45753ZM8.17798e-08 13.5245C0.000286857 11.3522 0.523707 9.212 1.52599 7.28484C2.52826 5.35768 3.97991 3.70027 5.75815 2.45281C7.53638 1.20535 9.58888 0.404536 11.742 0.118107C13.8952 -0.168322 16.0856 0.0680607 18.1281 0.80726C20.1706 1.54646 22.005 2.76673 23.4762 4.36485C24.9474 5.96297 26.0121 7.89192 26.5802 9.98855C27.1483 12.0852 27.2031 14.2878 26.74 16.4101C26.2769 18.5324 25.3095 20.5119 23.9196 22.1812L31.6087 29.8707C31.7295 29.9833 31.8264 30.119 31.8936 30.2699C31.9608 30.4207 31.9969 30.5835 31.9998 30.7487C32.0027 30.9138 31.9724 31.0778 31.9105 31.2309C31.8487 31.384 31.7566 31.5231 31.6399 31.6398C31.5231 31.7566 31.384 31.8487 31.2309 31.9105C31.0778 31.9724 30.9138 32.0027 30.7487 31.9998C30.5836 31.9969 30.4208 31.9608 30.27 31.8936C30.1191 31.8263 29.9834 31.7294 29.8708 31.6086L22.1818 23.9192C20.2066 25.5644 17.8035 26.6127 15.254 26.9413C12.7045 27.2698 10.1141 26.865 7.78643 25.7742C5.45872 24.6834 3.49004 22.9518 2.11101 20.7823C0.731983 18.6128 -0.000282542 16.0952 8.17798e-08 13.5245Z" fill="white"/>
-                                </svg>
-                            </div>
+<main>
+    <section class="vehicles">
+        <div class="container">
+            <div class="vehicles__section">
+                <div class="vehicles__info">
+                    <img class="vehicles__img" src="assets/cars/big/0.png" alt="" />
+                    <div class="vehicles__info-header">
+                        <div class="vehicles__info-header-title">
+                            <h3 class="vehicles__img-title">Sprinter executive</h3>
+                            <p class="vehicles__img-passengers">13 passengers</p>
                         </div>
-                        <div class="vehicles__info-footer">
-                            <p class="vehicles__img-text">Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer</p>
-                            <button class="vehicles__img-btn vehicles__img-btn--desktop">Book</button>
-                            
-                        </div>
-                        <button class="vehicles__img-btn vehicles__img-btn--mobile">Book</button>
-                        <div class="vehicles__info-hidden">
-                            <img class="vehicles__info-car" src="assets/cars/activeCar/activeCar.jpg" alt="">
-                            <button class="vehicles__info-car--exit">Back 
-                                <svg class="back" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15.7071 8.70711C16.0976 8.31658 16.0976 7.68342 15.7071 7.29289L9.34315 0.928933C8.95262 0.538409 8.31946 0.538409 7.92893 0.928933C7.53841 1.31946 7.53841 1.95262 7.92893 2.34315L13.5858 8L7.92893 13.6569C7.53841 14.0474 7.53841 14.6805 7.92893 15.0711C8.31946 15.4616 8.95262 15.4616 9.34315 15.0711L15.7071 8.70711ZM-8.74228e-08 9L15 9L15 7L8.74228e-08 7L-8.74228e-08 9Z" fill="#232AFD"/>
-                                </svg> 
-                            </button>
+                        <div class="vehicles__img-loupe">
+                            <img class="loupe__img" src="assets/loupe.png" alt="" />
+                            <svg
+                                    class="loupe__search"
+                                    width="32"
+                                    height="32"
+                                    viewBox="0 0 32 32"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M13.5255 2.45753C12.0722 2.45753 10.6332 2.74379 9.29059 3.29995C7.94797 3.85612 6.72803 4.6713 5.70043 5.69896C4.67282 6.72662 3.85769 7.94663 3.30155 9.28933C2.74542 10.632 2.45918 12.0711 2.45918 13.5245C2.45918 14.9778 2.74542 16.4169 3.30155 17.7596C3.85769 19.1023 4.67282 20.3223 5.70043 21.35C6.72803 22.3776 7.94797 23.1928 9.29059 23.749C10.6332 24.3051 12.0722 24.5914 13.5255 24.5914C16.4605 24.5914 19.2752 23.4254 21.3505 21.35C23.4259 19.2745 24.5918 16.4596 24.5918 13.5245C24.5918 10.5893 23.4259 7.77441 21.3505 5.69896C19.2752 3.62351 16.4605 2.45753 13.5255 2.45753ZM8.17798e-08 13.5245C0.000286857 11.3522 0.523707 9.212 1.52599 7.28484C2.52826 5.35768 3.97991 3.70027 5.75815 2.45281C7.53638 1.20535 9.58888 0.404536 11.742 0.118107C13.8952 -0.168322 16.0856 0.0680607 18.1281 0.80726C20.1706 1.54646 22.005 2.76673 23.4762 4.36485C24.9474 5.96297 26.0121 7.89192 26.5802 9.98855C27.1483 12.0852 27.2031 14.2878 26.74 16.4101C26.2769 18.5324 25.3095 20.5119 23.9196 22.1812L31.6087 29.8707C31.7295 29.9833 31.8264 30.119 31.8936 30.2699C31.9608 30.4207 31.9969 30.5835 31.9998 30.7487C32.0027 30.9138 31.9724 31.0778 31.9105 31.2309C31.8487 31.384 31.7566 31.5231 31.6399 31.6398C31.5231 31.7566 31.384 31.8487 31.2309 31.9105C31.0778 31.9724 30.9138 32.0027 30.7487 31.9998C30.5836 31.9969 30.4208 31.9608 30.27 31.8936C30.1191 31.8263 29.9834 31.7294 29.8708 31.6086L22.1818 23.9192C20.2066 25.5644 17.8035 26.6127 15.254 26.9413C12.7045 27.2698 10.1141 26.865 7.78643 25.7742C5.45872 24.6834 3.49004 22.9518 2.11101 20.7823C0.731983 18.6128 -0.000282542 16.0952 8.17798e-08 13.5245Z"
+                                        fill="white"
+                                />
+                            </svg>
                         </div>
                     </div>
-                    <div class="vehicles__slider">
-                        <div class="vehicles__slider-top">
-                            <h2 class="vehicles__slider-title">VEHICLES</h2>
-                            <div class="controllers">
-                                <div class="swiper-button-prev"></div>
-                                <div class="swiper-button-next"></div>
+                    <div class="vehicles__info-footer">
+                        <p class="vehicles__img-text">
+                            Some of the available features of the Sprinter Revel Edition include a rear audio system with radio
+                            and CD capabilities and speakers with an amp and a subwoofer
+                        </p>
+                        <button class="vehicles__img-btn vehicles__img-btn--desktop">Book</button>
+                    </div>
+                    <button class="vehicles__img-btn vehicles__img-btn--mobile">Book</button>
+                    <div class="vehicles__info-hidden">
+                        <img class="vehicles__info-car" src="assets/cars/activeCar/activeCar.jpg" alt="" />
+                        <button class="vehicles__info-car--exit">
+                            Back
+                            <svg
+                                    class="back"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                        d="M15.7071 8.70711C16.0976 8.31658 16.0976 7.68342 15.7071 7.29289L9.34315 0.928933C8.95262 0.538409 8.31946 0.538409 7.92893 0.928933C7.53841 1.31946 7.53841 1.95262 7.92893 2.34315L13.5858 8L7.92893 13.6569C7.53841 14.0474 7.53841 14.6805 7.92893 15.0711C8.31946 15.4616 8.95262 15.4616 9.34315 15.0711L15.7071 8.70711ZM-8.74228e-08 9L15 9L15 7L8.74228e-08 7L-8.74228e-08 9Z"
+                                        fill="#232AFD"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="vehicles__slider">
+                    <div class="vehicles__slider-top">
+                        <h2 class="vehicles__slider-title">VEHICLES</h2>
+                        <div class="controllers">
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    </div>
+
+                    <div class="vehicles__swiper-section">
+                        <div class="swiper vehicles__swiper"></div>
+
+                        <div class="vehicles__seats">
+                            <h5 class="vehicles__seats-title">Number of seats</h5>
+
+                            <div class="vehicles__seats-rows">
+                                <div class="vehicles__seats-row">
+                                    <div class="vehicles__seats-item active" data-value="all">
+                                        <p class="vehicles__seats-number">all</p>
+                                    </div>
+                                    <div class="vehicles__seats-item" data-value="10">
+                                        <p class="vehicles__seats-number">10</p>
+                                    </div>
+                                    <div class="vehicles__seats-item" data-value="11">
+                                        <p class="vehicles__seats-number">11</p>
+                                    </div>
+                                    <div class="vehicles__seats-item" data-value="12">
+                                        <p class="vehicles__seats-number">12</p>
+                                    </div>
+                                    <div class="vehicles__seats-item" data-value="13">
+                                        <p class="vehicles__seats-number">13</p>
+                                    </div>
+                                </div>
+                                <div class="vehicles__seats-row">
+                                    <div class="vehicles__seats-item" data-value="16">
+                                        <p class="vehicles__seats-number">16</p>
+                                    </div>
+                                    <div class="vehicles__seats-item" data-value="24">
+                                        <p class="vehicles__seats-number">24</p>
+                                    </div>
+                                    <div class="vehicles__seats-item" data-value="27">
+                                        <p class="vehicles__seats-number">27</p>
+                                    </div>
+                                    <div class="vehicles__seats-item" data-value="35">
+                                        <p class="vehicles__seats-number">35</p>
+                                    </div>
+                                    <div class="vehicles__seats-item" data-value="55">
+                                        <p class="vehicles__seats-number">55</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="vehicles__swiper-section">
-                            <div class="swiper vehicles__swiper">
-                            </div>
-    
-                            <div class="vehicles__seats">
-                                <h5 class="vehicles__seats-title">Number of seats</h5>
-    
-                                <div class="vehicles__seats-rows">
-                                    <div class="vehicles__seats-row">
-                                        <div class="vehicles__seats-item active" data-value="all">
-                                            <p class="vehicles__seats-number">all</p>
-                                        </div>
-                                        <div class="vehicles__seats-item" data-value="10">
-                                            <p class="vehicles__seats-number">10</p>
-                                        </div>
-                                        <div class="vehicles__seats-item" data-value="11">
-                                            <p class="vehicles__seats-number">11</p>
-                                        </div>
-                                        <div class="vehicles__seats-item" data-value="12">
-                                            <p class="vehicles__seats-number">12</p>
-                                        </div>
-                                        <div class="vehicles__seats-item" data-value="13">
-                                            <p class="vehicles__seats-number">13</p>
-                                        </div>
-                                    </div>
-                                    <div class="vehicles__seats-row">
-                                        <div class="vehicles__seats-item" data-value="16">
-                                            <p class="vehicles__seats-number">16</p>
-                                        </div>
-                                        <div class="vehicles__seats-item" data-value="24">
-                                            <p class="vehicles__seats-number">24</p>
-                                        </div>
-                                        <div class="vehicles__seats-item" data-value="27">
-                                            <p class="vehicles__seats-number">27</p>
-                                        </div>
-                                        <div class="vehicles__seats-item" data-value="35">
-                                            <p class="vehicles__seats-number">35</p>
-                                        </div>
-                                        <div class="vehicles__seats-item" data-value="55">
-                                            <p class="vehicles__seats-number">55</p>
-                                        </div>
-                                    </div>
-                                </div> 
-                            </div>                            
-                        </div>
-
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
+        </div>
+    </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script>
+    const CARS = [
+        {
+            preview: "assets/cars/small/0.png",
+            img: "assets/cars/big/0.png",
+            insideImg: "assets/cars/activeCar/activeCar.jpg",
+            name: "Sprinter executive",
+            description:
+                "Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer",
+            to: "#",
+            min: 13,
+            max: 13,
+        },
+        {
+            preview: "assets/cars/small/1.png",
+            img: "assets/cars/big/1.png",
+            insideImg: "assets/cars/activeCar/activeCar.jpg",
+            name: "Party Sprinter",
+            description:
+                "Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer",
+            to: "#",
+            min: 10,
+            max: 13,
+        },
+        {
+            preview: "assets/cars/small/2.png",
+            img: "assets/cars/big/2.png",
+            insideImg: "assets/cars/activeCar/activeCar.jpg",
+            name: "Regular sprinter",
+            description:
+                "Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer",
+            to: "#",
+            min: 11,
+            max: 11,
+        },
+        {
+            preview: "assets/cars/small/3.png",
+            img: "assets/cars/big/3.png",
+            insideImg: "assets/cars/activeCar/activeCar.jpg",
+            name: "Sprinter luxury",
+            description:
+                "Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer",
+            to: "#",
+            min: 16,
+            max: 16,
+        },
+        {
+            preview: "assets/cars/small/4.png",
+            img: "assets/cars/big/4.png",
+            insideImg: "assets/cars/activeCar/activeCar.jpg",
+            name: "Minibus",
+            description:
+                "Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer",
+            to: "#",
+            min: 24,
+            max: 24,
+        },
+        {
+            preview: "assets/cars/small/5.png",
+            img: "assets/cars/big/5.png",
+            insideImg: "assets/cars/activeCar/activeCar.jpg",
+            name: "Minibus",
+            description:
+                "Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer",
+            to: "#",
+            min: 27,
+            max: 27,
+        },
+        {
+            preview: "assets/cars/small/6.png",
+            img: "assets/cars/big/6.png",
+            insideImg: "assets/cars/activeCar/activeCar.jpg",
+            name: "Minibus",
+            description:
+                "Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer",
+            to: "#",
+            min: 35,
+            max: 35,
+        },
+        {
+            preview: "assets/cars/small/7.png",
+            img: "assets/cars/big/7.png",
+            insideImg: "assets/cars/activeCar/activeCar.jpg",
+            name: "Motor coach",
+            description:
+                "Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer",
+            to: "#",
+            min: 35,
+            max: 35,
+        },
+    ];
+
+    const swiperContainer = document.querySelector(".vehicles__swiper");
+    const filterItems = document.querySelectorAll(".vehicles__seats-item");
+
+    const carInfoContainer = document.querySelector(".vehicles__info");
+
+    const carImg = carInfoContainer.querySelector(".vehicles__img");
+    const carInsideImg = carInfoContainer.querySelector(".vehicles__info-car");
+    const carName = carInfoContainer.querySelector(".vehicles__img-title");
+    const carPassengers = carInfoContainer.querySelector(".vehicles__img-passengers");
+    const carDescription = carInfoContainer.querySelector(".vehicles__img-text");
+
+    const carInsideShowContainer = carInfoContainer.querySelector(".vehicles__info-hidden");
+    const carInsideShowBtn = carInfoContainer.querySelector(".vehicles__img-loupe");
+    const carInsideHideBtn = carInfoContainer.querySelector(".vehicles__info-car--exit");
+
+    const getPassengersText = (min, max) => {
+        if (min === max) return `${max} passengers`;
+
+        return `${min}-${max} passengers`;
+    };
+
+    carInsideShowBtn.addEventListener("click", () => {
+        carInsideShowContainer.classList.add("active");
+    });
+
+    carInsideHideBtn.addEventListener("click", () => {
+        carInsideShowContainer.classList.remove("active");
+    });
+
+    const handleClickCar = (e, car) => {
+        carImg.src = car.img;
+        carInsideImg.src = car.insideImg;
+        carName.innerHTML = car.name;
+        carPassengers.innerHTML = getPassengersText(car.min, car.max);
+        carDescription.innerHTML = car.description;
+        carInsideShowContainer.classList.remove("active");
+    };
+
+    const renderCar = (car) => {
+        const element = document.createElement("div");
+        element.classList.add("swiper-slide", "vehicles__item");
+        element.addEventListener("click", (e) => handleClickCar(e, car));
+
+        element.innerHTML = `
+            <div class="vehicles__item-container">
+              <div class="vehicles__item-img">
+                  <img src="${car.preview}" alt="">
+              </div>
+              <div class="vehicles__item-info">
+                  <h4 class="vehicles__item-title">${car.name}</h4>
+                  <p class="vehicles__item-text">${getPassengersText(car.min, car.max)}</p>
+                  <a class="vehicles__item-link" href="${car.to}">Consider</a>
+              </div>
+            </div>
+          `;
+
+        return element;
+    };
+
+    const renderCars = (cars) => {
+        swiperContainer.innerHTML = "";
+
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("swiper-wrapper");
+
+        cars.forEach((item) => {
+            wrapper.appendChild(renderCar(item));
+        });
+
+        swiperContainer.appendChild(wrapper);
+        refreshSlider();
+    };
+
+    filterItems.forEach((item) => {
+        const value = item.dataset.value;
+
+        item.addEventListener("click", (e) => {
+            filterItems.forEach((item) => item.classList.remove("active"));
+
+            e.currentTarget.classList.add("active");
+            handleFilterCars(value);
+        });
+    });
+
+    const handleFilterCars = (value) => {
+        if (value === "all") {
+            renderCars(CARS);
+        } else {
+            renderCars(CARS.filter(({ min, max }) => value >= min && value <= max));
+        }
+    };
+
+    const refreshSlider = () => {
+        new Swiper(".vehicles__swiper", {
+            slidesPerView: "auto",
+            spaceBetween: 10,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                720: {
+                    spaceBetween: 60,
+                },
+            },
+        });
+    };
+
+    renderCars(CARS);
+</script>
 </body>
 </html>
