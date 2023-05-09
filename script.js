@@ -2,6 +2,7 @@ const CARS = [
   {
     preview: 'assets/cars/small/0.png',
     img: 'assets/cars/big/0.png',
+    insideImg: 'assets/cars/activeCar/activeCar.jpg',
     name: 'Sprinter executive',
     description: 'Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer',
     to: '#',
@@ -11,6 +12,7 @@ const CARS = [
   {
     preview: 'assets/cars/small/1.png',
     img: 'assets/cars/big/1.png',
+    insideImg: 'assets/cars/activeCar/activeCar.jpg',
     name: 'Party Sprinter',
     description: 'Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer',
     to: '#',
@@ -20,6 +22,7 @@ const CARS = [
   {
     preview: 'assets/cars/small/2.png',
     img: 'assets/cars/big/2.png',
+    insideImg: 'assets/cars/activeCar/activeCar.jpg',
     name: 'Regular sprinter',
     description: 'Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer',
     to: '#',
@@ -29,6 +32,7 @@ const CARS = [
   {
     preview: 'assets/cars/small/3.png',
     img: 'assets/cars/big/3.png',
+    insideImg: 'assets/cars/activeCar/activeCar.jpg',
     name: 'Sprinter luxury',
     description: 'Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer',
     to: '#',
@@ -38,6 +42,7 @@ const CARS = [
   {
     preview: 'assets/cars/small/4.png',
     img: 'assets/cars/big/4.png',
+    insideImg: 'assets/cars/activeCar/activeCar.jpg',
     name: 'Minibus',
     description: 'Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer',
     to: '#',
@@ -47,6 +52,7 @@ const CARS = [
   {
     preview: 'assets/cars/small/5.png',
     img: 'assets/cars/big/5.png',
+    insideImg: 'assets/cars/activeCar/activeCar.jpg',
     name: 'Minibus',
     description: 'Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer',
     to: '#',
@@ -56,6 +62,7 @@ const CARS = [
   {
     preview: 'assets/cars/small/6.png',
     img: 'assets/cars/big/6.png',
+    insideImg: 'assets/cars/activeCar/activeCar.jpg',
     name: 'Minibus',
     description: 'Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer',
     to: '#',
@@ -65,6 +72,7 @@ const CARS = [
   {
     preview: 'assets/cars/small/7.png',
     img: 'assets/cars/big/7.png',
+    insideImg: 'assets/cars/activeCar/activeCar.jpg',
     name: 'Motor coach',
     description: 'Some of the available features of the Sprinter Revel Edition include a rear audio system with radio and CD capabilities and speakers with an amp and a subwoofer',
     to: '#',
@@ -82,16 +90,30 @@ const getPassengersText = (min, max) => {
 const carInfoContainer = document.querySelector('.vehicles__info');
 
 const carImg = carInfoContainer.querySelector('.vehicles__img');
+const carInsideImg = carInfoContainer.querySelector('.vehicles__info-car');
 const carName = carInfoContainer.querySelector('.vehicles__img-title');
 const carPassengers = carInfoContainer.querySelector('.vehicles__img-passengers');
 const carDescription = carInfoContainer.querySelector('.vehicles__img-text');
 
+const carInsideShowContainer = carInfoContainer.querySelector('.vehicles__info-hidden');
+const carInsideShowBtn = carInfoContainer.querySelector('.vehicles__img-loupe');
+const carInsideHideBtn = carInfoContainer.querySelector('.vehicles__info-car--exit');
+
+carInsideShowBtn.addEventListener('click', () => {
+  carInsideShowContainer.classList.add('active');
+});
+
+carInsideHideBtn.addEventListener('click', () => {
+  carInsideShowContainer.classList.remove('active');
+})
 
 const handleClickCar = (e, car) => {
   carImg.src = car.img;
+  carInsideImg.src = car.insideImg;
   carName.innerHTML = car.name;
   carPassengers.innerHTML = getPassengersText(car.min, car.max);
   carDescription.innerHTML = car.description;
+  carInsideShowContainer.classList.remove('active');
 }
 
 const renderCar = (car) => {
@@ -155,10 +177,15 @@ const handleFilterCars = (value) => {
 const refreshSlider = () => {
   new Swiper(".vehicles__swiper", {
     slidesPerView: 'auto',
-    spaceBetween: 60,
+    spaceBetween: 10,
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      720: {
+        spaceBetween: 60,
+      },
     },
   });
 }

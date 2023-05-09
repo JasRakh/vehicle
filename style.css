@@ -72,7 +72,6 @@ body{
     color: #232AFD;
     border: 0;
     outline: 0;
-    display: flex;
     align-items: center;
     cursor: pointer;
     display: none;
@@ -367,10 +366,6 @@ body{
     }
 }
 @media screen and (max-width: 1200px){
-    /* .vehicles__info{
-        width: 100%;
-        margin: 0 auto;
-    } */
     .container{
         max-width: 1100px;
         width: 100%;
@@ -412,7 +407,7 @@ body{
         display: none !important;
     }
 }
-@media screen and (max-width: 500px){
+@media screen and (max-width: 720px){
     .vehicles__item {
         font-size: 18px;
         margin-right: 15px !important;
@@ -448,7 +443,8 @@ body{
         display: none;
     }
     .vehicles__info-footer{
-        bottom: 160px;
+        bottom: 152px;
+        left: 17px;
     }
     .vehicles__swiper-section{
         display: flex;
@@ -543,5 +539,11 @@ body{
     }
     .vehicles__seats-number{
         padding: 10px 24px;
+    }
+    .vehicles__info-car--exit {
+        padding: 12px 18px;
+        font-size: 14px;
+        top: 16px;
+        right: 16px;
     }
 }
